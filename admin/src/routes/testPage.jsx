@@ -8,7 +8,6 @@ class TestPage extends React.Component {　
     return (
       <div onClick={() => {this.props.dispatch(routerRedux.push('/supplier'))}}>
         当前页路由 {this.props.location.pathname}
-
       </div>
     )
   }
