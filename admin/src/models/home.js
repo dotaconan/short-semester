@@ -42,7 +42,7 @@ export default {
             let activeIndex = 1;
             if (/^\/$/.test(pathname)) {
                 activeIndex = 1;
-            } else if (/test1/.test(pathname)) {
+            } else if (/user/.test(pathname)) {
                 activeIndex = 2;
             } else if (/test2/.test(pathname)) {
                 activeIndex = 3;
@@ -51,7 +51,7 @@ export default {
             } else {
                 activeIndex = 0;
             }
-            return { ...state, activeIndex: activeIndex };
+            return {...state, activeIndex: activeIndex };
         }
     },
 

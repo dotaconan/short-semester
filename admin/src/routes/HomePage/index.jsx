@@ -37,7 +37,7 @@ class HomePage extends React.Component {
               <NavLink target="/" linkText={<span><Icon type="user" /><span>首页</span></span>} />
             </Menu.Item>
             <Menu.Item key="2">
-              <NavLink target="/test1" linkText={<span><Icon type="user" /><span>权限测试路由1</span></span>} />
+              <NavLink target="/user" linkText={<span><Icon type="user" /><span>用户管理</span></span>} />
             </Menu.Item>
             <Menu.Item key="3">
               <NavLink target="/test2" linkText={<span><Icon type="user" /><span>权限测试路由2</span></span>} />
