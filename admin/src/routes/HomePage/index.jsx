@@ -11,6 +11,7 @@ const { Header, Sider } = Layout;
 class HomePage extends React.Component {
   constructor(props) {
     super(props)
+    props.dispatch({type: 'userManage/getAllUser'})
   }
 
   state = {

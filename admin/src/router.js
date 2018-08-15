@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, Switch } from 'dva/router';
 import HomePage from './routes/HomePage/index.jsx';
 import TestPage from './routes/testPage.jsx';
-import UserManage from './routes/UserManage/index.jsx'
+import UserManage from './components/UserManageTable/index.jsx'
 
 function RouterConfig({ history }) {
   return (

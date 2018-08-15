@@ -6,7 +6,7 @@ export default {
     namespace: 'userManage',
 
     state: {
-
+        modalVisible: false,
     },
 
     subscriptions: {
@@ -14,10 +14,11 @@ export default {
     },
 
     effects: {
-        *getAllUser({ payload }, { call, put }) {
+        * getAllUser({ payload }, { call, put }) {
             const { data } = yield call(getAllUser);
             if (data && data.success) {
                 // 获取所有用户信息成功
+
                 yield put({
                     type: 'getAllUserSuccess',
                     payload: data.userData
@@ -28,7 +29,14 @@ export default {
 
     reducers: {
         getAllUserSuccess(state, action) {
-            return {...state, ...action };
+            let userData = action.payload
+            return {...state, ...userData };
+        },
+        showModal(state) {
+            return {...state, modalVisible: true };
+        },
+        hideModal(state) {
+            return {...state, modalVisible: false };
         },
     },
 
