@@ -1,14 +1,15 @@
 import React from 'react';
 import {connect} from 'dva';
 // import {routerRedux} from 'dva/router'
-import {Table, Divider, Button} from 'antd';
+import {Table, Divider} from 'antd';
 
 import UserManageModal from './../UserManageModal/index.jsx'
+let clickUserId = 0;
 
 const UserManageTable = ({userManage, dispatch}) => {
     const {modalVisible} = userManage;
 
-    const data = []
+    let data = []
 
     for (const key in userManage) {
         if (key !== 'modalVisible') {
@@ -16,22 +17,36 @@ const UserManageTable = ({userManage, dispatch}) => {
         }
     }
 
-    const changeAuth = () => {
+    const changeAuth = (userId) => {
+        clickUserId =  userId;
 		dispatch({type: 'userManage/showModal'});
     };
+
+    const deleteUser = (userID) => {
+		dispatch({
+            type: 'userManage/deleteUser',
+            payload: {
+                userID: userID
+            }
+        });
+    }
     
     const UserManageModalProps = {
         visible: modalVisible,
-        onConfirm(inputData) {
-            console.log('inputData: ', inputData);
-            dispatch({type: 'userManage/hideModal'});
+        onConfirm(authId) {
+            let changeData = {
+                authId: authId,
+                clickUserId: clickUserId
+            }
+            dispatch({
+                type: 'userManage/changeAuth',
+                payload: changeData
+            });
         },
         onCancel() {
             dispatch({type: 'userManage/hideModal'});
         }
     };
-
-    const UserManageModalGen = () => (<UserManageModal {...UserManageModalProps}/>);
 
     const columns = [
         {
@@ -51,10 +66,10 @@ const UserManageTable = ({userManage, dispatch}) => {
             key: 'action',
             render: (text, record) => (
                 <span>
-                    <a onClick={changeAuth}>权限修改</a>
-                    <UserManageModalGen />
+                    <a onClick={() => changeAuth(record.id)}>权限修改</a>
+                    <UserManageModal {...UserManageModalProps}/>
                     <Divider type="vertical"/>
-                    <a href="javascript:;">Delete</a>
+                    <a onClick={() => deleteUser(record.id)}>Delete</a>
                 </span>
             )
         }

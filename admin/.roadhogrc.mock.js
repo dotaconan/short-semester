@@ -31,23 +31,65 @@ module.exports = {
     'GET /user' (req, res) {
         const data = [{
             key: '1',
+            id: 1,
             name: 'John Brown',
             sex: 0,
             auth: 0,
         }, {
             key: '2',
+            id: 2,
             name: 'Jim Green',
             sex: 0,
             auth: 1,
         }, {
             key: '3',
+            id: 3,
             name: 'Joe Black',
             sex: 0,
-            auth: 2,
+            auth: 1,
         }];
         res.json({
             success: true,
             userData: data
+        })
+    },
+    'POST /user/modify' (req, res) {
+        const { userId, authId } = req.body;
+
+        const data = [{
+            key: '1',
+            id: 1,
+            name: 'John Brown',
+            sex: 0,
+            auth: 0,
+        }, {
+            key: '2',
+            id: 2,
+            name: 'Jim Green',
+            sex: 0,
+            auth: 1,
+        }, {
+            key: '3',
+            id: 3,
+            name: 'Joe Black',
+            sex: 0,
+            auth: 1,
+        }];
+        for (const key in data) {
+            if (data[key].id === userId) {
+                data[key].auth = authId
+            }
+        }
+        res.json({
+            success: true,
+            userData: data
+        })
+    },
+    'POST /user' (req, res) {
+        const { userID } = req.body;
+
+        res.json({
+            success: true,
         })
     },
 }

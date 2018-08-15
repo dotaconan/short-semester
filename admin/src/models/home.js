@@ -29,6 +29,9 @@ export default {
                 //         payload: location.pathname
                 //     });
                 // }
+                if (location.pathname === '/user') {
+                    dispatch({ type: 'userManage/getAllUser' })
+                }
                 dispatch({
                     type: 'updateActiveIndex',
                     payload: location.pathname
