@@ -14,6 +14,23 @@ function LayoutGlobal({dispatch, children, location }) {
     })
   }
 
+  if (location.pathname === '/login') {
+    return (
+      <Layout className={styles.layout}>
+
+      <Content style={{ padding: '0 100px' }}>
+        <div style={{ background: '#fff', padding: 24, minHeight: 500, minWidth: 1480 }}>
+          {children}
+        </div>
+      </Content>
+
+      <Footer style={{ textAlign: 'center' }}>
+        system ©2018 Created by <a href="https://github.com/Riunshow">Riunshow</a>
+      </Footer>
+    </Layout>
+    )
+  }
+
   return (
     <Layout className={styles.layout}>
       <Header style={{ minWidth: 1580 }}>
@@ -54,5 +71,4 @@ function LayoutGlobal({dispatch, children, location }) {
     </Layout>
   );
 }
-
 export default withRouter(LayoutGlobal);
