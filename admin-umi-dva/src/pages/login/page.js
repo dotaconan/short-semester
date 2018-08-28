@@ -1,9 +1,9 @@
-// import Users from './components/Users';
+import Login from './components/login';
 
 export default () => {
   return (
     <div>
-      login page
+      <Login />
     </div>
   )
 }

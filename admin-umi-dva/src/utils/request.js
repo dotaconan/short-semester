@@ -1,13 +1,13 @@
 import fetch from 'dva/fetch';
 
 function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  }
+    if (response.status >= 200 && response.status < 300) {
+        return response;
+    }
 
-  const error = new Error(response.statusText);
-  error.response = response;
-  throw error;
+    const error = new Error(response.statusText);
+    error.response = response;
+    throw error;
 }
 
 /**
@@ -17,8 +17,24 @@ function checkStatus(response) {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
+
+ /*
+ const defaultOptionsProd = {
+    credentials: 'same-origin',
+    headers: {
+		'content-type': 'application/json'
+    },
+};
+ */
+const defaultOptions = {
+    mode: 'cors',
+    credentials: 'include',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+};
 export default async function request(url, options) {
-  const response = await fetch(url, options);
+  const response = await fetch(url, {...defaultOptions, ...options});
 
   checkStatus(response);
 
