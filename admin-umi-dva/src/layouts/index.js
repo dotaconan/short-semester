@@ -48,13 +48,13 @@ function LayoutGlobal({dispatch, children, location }) {
               <Link to="/users"><Icon type="bars" />用户管理</Link>
             </Menu.Item>
             <Menu.Item key="/articles">
-              <Link to="/articles"><Icon type="frown-circle" />文章管理</Link>
+              <Link to="/articles"><Icon type="form" />文章管理</Link>
             </Menu.Item>
             <Menu.Item key="/bookshelf">
-              <Link to="/bookshelf"><Icon type="frown-circle" />书架管理</Link>
+              <Link to="/bookshelf"><Icon type="database" />书架管理</Link>
             </Menu.Item>
             <Menu.Item key="logout" className={styles.logout}>
-              <Button type="primary" onClick={userLogout}><Icon type="frown-circle" />退出</Button>
+              <Button type="primary" onClick={userLogout}><Icon type="poweroff" />退出</Button>
             </Menu.Item>
             <Menu.Item key="avatar" className={styles.avatar}>
               <Button type="primary"><Icon type="frown-circle" />头像</Button>

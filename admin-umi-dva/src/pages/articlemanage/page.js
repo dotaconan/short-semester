@@ -1,6 +1,55 @@
-import Manage from './components/manage';
-import { Breadcrumb, Button } from 'antd';
+// import Manage from './components/manage';
+import { Breadcrumb, Button, Input } from 'antd';
 import Link from 'umi/link';
+
+import BraftEditor from 'braft-editor'
+import 'braft-editor/dist/braft.css'
+
+let articleData = {}
+
+function Manage({ values }) {
+  if (!values) {
+    values = {
+      title: '',
+      content: '',
+    }
+  }
+  articleData = values;
+
+  const editorChange = (content) => {
+    articleData.content = content
+  }
+
+  const inputChange = (event) => {
+    articleData.title = event.target.value
+  }
+
+  const editorProps = {
+    height: 500,
+    contentFormat: 'html',
+    initialContent: `${values.content}`,
+    onChange: editorChange
+  }
+
+  return (
+    <div>
+      <Input defaultValue={values.title} onChange={inputChange}/>
+      <BraftEditor {...editorProps}/>
+    </div>
+  )
+}
+
+const handleSubmit = () => {
+  articleData.id ?
+    window.g_app._store.dispatch({
+      type: "articles/patch",
+      payload: articleData
+    }) :
+    window.g_app._store.dispatch({
+      type: "articles/create",
+      payload: articleData
+    })
+}
 
 export default (location) => {
   if (location.location.body) {
@@ -14,7 +63,7 @@ export default (location) => {
             </Breadcrumb>
           </div>
           <div style={{float: 'right', height: 60}}>
-            <Button>修改文章</Button>
+            <Button onClick={handleSubmit}>修改文章</Button>
           </div>
         </div>
         <Manage values={location.location.body.values}></Manage>
@@ -31,7 +80,7 @@ export default (location) => {
             </Breadcrumb>
           </div>
           <div style={{float: 'right', height: 60}}>
-            <Button>发表文章</Button>
+            <Button onClick={handleSubmit}>发表文章</Button>
           </div>
         </div>
         <Manage></Manage>

@@ -1,15 +1,19 @@
 import { connect } from 'dva';
-import { routerRedux } from 'dva/router';
 import { Input } from 'antd';
 import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/braft.css'
 
-function articleManage({ dispatch, values }) {
+function articleManage({ values }) {
   if (!values) {
     values = {
       title: '',
       content: '',
     }
+  }
+
+  const handleChange = (content) => {
+    console.log(content)
+
   }
 
   const editorProps = {
@@ -20,17 +24,9 @@ function articleManage({ dispatch, values }) {
     onRawChange: handleRawChange
   }
 
-  const handleChange = (content) => {
-    console.log(content)
-  }
-
-  const handleRawChange = (rawContent) => {
-    console.log(rawContent)
-  }
-
   return (
     <div>
-      <Input placeholder={values.title} />
+      <Input defaultValue={values.title} />
       <BraftEditor {...editorProps}/>
     </div>
   )

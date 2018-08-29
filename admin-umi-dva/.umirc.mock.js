@@ -121,7 +121,7 @@ module.exports = {
     let userData = []
     let randomArray = [0, 1]
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 10; i++) {
         let newArticle = {
             id: Random.string('number', 5),
             title: Random.cname(),
