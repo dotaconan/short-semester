@@ -19,7 +19,7 @@ function LayoutGlobal({dispatch, children, location }) {
       <Layout className={styles.layout}>
 
       <Content style={{ padding: '0 100px' }}>
-        <div style={{ background: '#fff', padding: 24, minHeight: 500, minWidth: 1480 }}>
+        <div style={{ background: '#fff', padding: 24, minHeight: 500, minWidth: 1000 }}>
           {children}
         </div>
       </Content>
@@ -42,25 +42,28 @@ function LayoutGlobal({dispatch, children, location }) {
         style={{ lineHeight: '64px' }}
         >
           <Menu.Item key="/">
-              <Link to="/"><Icon type="home" />Home</Link>
+              <Link to="/"><Icon type="home" />主页</Link>
             </Menu.Item>
             <Menu.Item key="/users">
-              <Link to="/users"><Icon type="bars" />Users</Link>
+              <Link to="/users"><Icon type="bars" />用户管理</Link>
             </Menu.Item>
-            <Menu.Item key="/404">
-              <Link to="/page-you-dont-know"><Icon type="frown-circle" />404</Link>
+            <Menu.Item key="/article">
+              <Link to="/article"><Icon type="frown-circle" />文章管理</Link>
+            </Menu.Item>
+            <Menu.Item key="/bookshelf">
+              <Link to="/bookshelf"><Icon type="frown-circle" />书架管理</Link>
             </Menu.Item>
             <Menu.Item key="logout" className={styles.logout}>
               <Button type="primary" onClick={userLogout}><Icon type="frown-circle" />退出</Button>
             </Menu.Item>
-            <Menu.Item key="avatar" className={styles.logout}>
+            <Menu.Item key="avatar" className={styles.avatar}>
               <Button type="primary"><Icon type="frown-circle" />头像</Button>
             </Menu.Item>
         </Menu>
       </Header>
 
       <Content style={{ padding: '0 100px' }}>
-        <div style={{ background: '#fff', padding: 24, minHeight: 500, minWidth: 1480 }}>
+        <div style={{ background: '#fff', padding: 24, minHeight: 800, minWidth: 1000 }}>
           {children}
         </div>
       </Content>

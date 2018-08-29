@@ -24,6 +24,24 @@ export default {
                     });
                 }
             }
+            switch(location.pathname){
+              case '/login':
+                document.title="登录";
+              break;
+              case '/':
+                document.title="首页";
+              break;
+              case '/article':
+                document.title="文章管理";
+              break;
+              case '/bookshelf':
+                document.title="书架管理";
+              break;
+              case '/users':
+                document.title="用户管理";
+              break;
+              default:break;
+              }
         });
     },
 },

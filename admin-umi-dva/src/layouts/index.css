@@ -5,7 +5,21 @@
   margin: 16px 24px 16px 50px;
   float: left;
 }
-.logout{
-  left: 800px;
-  position: absolute;
+@media screen and (max-width: 1200px) {
+  .logout{
+    margin-left: 160px;
+  }
+
 }
+@media screen and (min-width: 1200px) {
+  .logout{
+    right: 200px;
+    position: absolute !important;
+  }
+  .avatar {
+    right: 80px;
+    position: absolute !important;
+  }
+
+}
+

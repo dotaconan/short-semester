@@ -2,7 +2,6 @@ import { connect } from 'dva';
 import { Table, Pagination, Popconfirm, Button } from 'antd';
 import { routerRedux } from 'dva/router';
 import styles from './Users.css';
-import { PAGE_SIZE } from '../constants';
 import UserModal from './UserModal';
 
 function Users({ dispatch, list: dataSource, loading, total, page: current }) {
@@ -36,23 +35,34 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: '头像',
+      dataIndex: 'cover',
+      key: 'cover',
+      render: text => <img src='https://avatars0.githubusercontent.com/u/19502268?s=40&v=4'></img>,
+    },
+    {
+      title: '名字',
+      dataIndex: 'nickname',
+      key: 'nickname',
       render: text => <a href="">{text}</a>,
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
+      title: '性别',
+      dataIndex: 'sex',
+      key: 'sex',
     },
     {
-      title: 'Website',
-      dataIndex: 'website',
-      key: 'website',
+      title: '邮箱账户',
+      dataIndex: 'account',
+      key: 'account',
     },
     {
-      title: 'Operation',
+      title: '权限',
+      dataIndex: 'role',
+      key: 'role',
+    },
+    {
+      title: '操作',
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
@@ -86,7 +96,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
           className="ant-table-pagination"
           total={total}
           current={current}
-          pageSize={PAGE_SIZE}
+          pageSize={10}
           onChange={pageChangeHandler}
         />
       </div>

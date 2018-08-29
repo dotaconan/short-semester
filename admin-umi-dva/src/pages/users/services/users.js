@@ -1,25 +1,24 @@
-import { PAGE_SIZE } from '../constants';
 import request from '../../../utils/request';
 
-export function fetch({ page = 1 }) {
-  return request(`/api/users?_page=${page}&_limit=${PAGE_SIZE}`);
+export function getUser({ page = 1 }) {
+  return request(`/user?page=${page}`)
 }
 
 export function remove(id) {
-  return request(`/api/users/${id}`, {
+  return request(`/user/${id}`, {
     method: 'DELETE',
   });
 }
 
 export function patch(id, values) {
-  return request(`/api/users/${id}`, {
+  return request(`/user/${id}`, {
     method: 'PATCH',
     body: JSON.stringify(values),
   });
 }
 
 export function create(values) {
-  return request('/api/users', {
+  return request('/user', {
     method: 'POST',
     body: JSON.stringify(values),
   });

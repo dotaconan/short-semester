@@ -38,7 +38,7 @@ class UserEditModal extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { name, email, website } = this.props.record;
+    const { nickname, sex, account, role } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -50,39 +50,49 @@ class UserEditModal extends Component {
           { children }
         </span>
         <Modal
-          title="Edit User"
+          title={this.props.record.id ? '编辑' : '新建'}
           visible={this.state.visible}
           onOk={this.okHandler}
           onCancel={this.hideModelHandler}
         >
-          <Form horizontal onSubmit={this.okHandler}>
+          <Form onSubmit={this.okHandler}>
             <FormItem
               {...formItemLayout}
-              label="Name"
+              label="昵称"
             >
               {
-                getFieldDecorator('name', {
-                  initialValue: name,
+                getFieldDecorator('nickname', {
+                  initialValue: nickname,
                 })(<Input />)
               }
             </FormItem>
             <FormItem
               {...formItemLayout}
-              label="Email"
+              label="账户"
             >
               {
-                getFieldDecorator('email', {
-                  initialValue: email,
+                getFieldDecorator('account', {
+                  initialValue: account,
                 })(<Input />)
               }
             </FormItem>
             <FormItem
               {...formItemLayout}
-              label="Website"
+              label="性别"
             >
               {
-                getFieldDecorator('website', {
-                  initialValue: website,
+                getFieldDecorator('sex', {
+                  initialValue: sex,
+                })(<Input />)
+              }
+            </FormItem>
+            <FormItem
+              {...formItemLayout}
+              label="权限"
+            >
+              {
+                getFieldDecorator('role', {
+                  initialValue: role,
                 })(<Input />)
               }
             </FormItem>
