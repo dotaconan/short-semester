@@ -24,6 +24,7 @@ module.exports = {
       success: true
     })
   },
+  // ---------------- 用户管理 start ----------------
   'GET /user' (req, res) {
     console.log(req.query);
     let userData = []
@@ -111,5 +112,94 @@ module.exports = {
       success: true,
       data: userData
     })
-  }
+  },
+  // ---------------- 用户管理 end ----------------
+
+  // ---------------- 文章管理 start ----------------
+  'GET /article' (req, res) {
+    console.log(req.query);
+    let userData = []
+    let randomArray = [0, 1]
+
+    for (let i = 0; i < 8; i++) {
+        let newArticle = {
+            id: Random.string('number', 5),
+            title: Random.cname(),
+            img: 'https://avatars0.githubusercontent.com/u/19502268?s=40&v=4',
+            date: Random.date(),
+            like: Random.integer(0, 100),
+            content: `<p>${Random.string(200)}</p>`,
+        }
+        userData.push(newArticle)
+    }
+    res.json({
+      success: true,
+      data: userData
+    })
+  },
+  'DELETE /article/:id' (req, res) {
+    console.log('d: ',req.query);
+    let userData = []
+    let randomArray = [0, 1]
+
+    for (let i = 0; i < 8; i++) {
+        let newArticle = {
+            id: Random.string('number', 5),
+            title: Random.cname(),
+            img: 'https://avatars0.githubusercontent.com/u/19502268?s=40&v=4',
+            date: Random.date(),
+            like: Random.integer(0, 100),
+            content: `<p>这里是模拟数据</p>`,
+        }
+        userData.push(newArticle)
+    }
+    res.json({
+      success: true,
+      data: userData
+    })
+  },
+  'PATCH /article/:id' (req, res) {
+    console.log(req.query);
+    let userData = []
+    let randomArray = [0, 1]
+
+    for (let i = 0; i < 8; i++) {
+        let newArticle = {
+            id: Random.string('number', 5),
+            title: Random.cname(),
+            img: 'https://avatars0.githubusercontent.com/u/19502268?s=40&v=4',
+            date: Random.date(),
+            like: Random.integer(0, 100),
+            content: '<p>这里是模拟数据</p>',
+        }
+        userData.push(newArticle)
+    }
+    res.json({
+      success: true,
+      data: userData
+    })
+  },
+  'POST /article' (req, res) {
+    console.log(req.query);
+    let userData = []
+    let randomArray = [0, 1]
+
+    for (let i = 0; i < 8; i++) {
+        let newArticle = {
+            id: Random.string('number', 5),
+            title: Random.cname(),
+            img: 'https://avatars0.githubusercontent.com/u/19502268?s=40&v=4',
+            date: Random.date(),
+            like: Random.integer(0, 100),
+            content: '<p>这里是模拟数据</p>',
+        }
+        userData.push(newArticle)
+    }
+    res.json({
+      success: true,
+      data: userData
+    })
+  },
+  // ---------------- 文章管理 end ----------------
+
 }

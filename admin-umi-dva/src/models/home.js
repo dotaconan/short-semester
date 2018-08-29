@@ -31,7 +31,7 @@ export default {
               case '/':
                 document.title="首页";
               break;
-              case '/article':
+              case '/articles':
                 document.title="文章管理";
               break;
               case '/bookshelf':

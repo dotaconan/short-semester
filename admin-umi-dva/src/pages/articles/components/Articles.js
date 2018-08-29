@@ -1,74 +1,57 @@
 import { connect } from 'dva';
 import { Table, Pagination, Popconfirm, Button } from 'antd';
 import { routerRedux } from 'dva/router';
-import styles from './Users.css';
-import UserModal from './UserModal';
+import styles from './Articles.css';
 
-function Users({ dispatch, list: dataSource, loading, total, page: current }) {
+function Articles({ dispatch, list: dataSource, loading, total, page: current }) {
   function deleteHandler(id) {
     dispatch({
-      type: 'users/remove',
+      type: 'articles/remove',
       payload: id,
     });
   }
 
   function pageChangeHandler(page) {
     dispatch(routerRedux.push({
-      pathname: '/users',
+      pathname: '/articles',
       query: { page },
     }));
   }
 
   function editHandler(id, values) {
-    dispatch({
-      type: 'users/patch',
-      payload: { id, values },
-    });
+    dispatch(routerRedux.push({
+      pathname: '/articlemanage',
+      body: { values },
+    }))
   }
 
-  function createHandler(values) {
-    dispatch({
-      type: 'users/create',
-      payload: values,
-    });
+  function createHandler() {
+    dispatch(routerRedux.push('/articlemanage'))
   }
 
   const columns = [
     {
-      title: '头像',
-      dataIndex: 'cover',
-      key: 'cover',
-      render: text => <img src='https://avatars0.githubusercontent.com/u/19502268?s=40&v=4' alt='图片'></img>,
-    },
-    {
-      title: '名字',
-      dataIndex: 'nickname',
-      key: 'nickname',
+      title: '标题',
+      dataIndex: 'title',
+      key: 'title',
       render: text => <a href="">{text}</a>,
     },
     {
-      title: '性别',
-      dataIndex: 'sex',
-      key: 'sex',
+      title: '日期',
+      dataIndex: 'date',
+      key: 'date',
     },
     {
-      title: '邮箱账户',
-      dataIndex: 'account',
-      key: 'account',
-    },
-    {
-      title: '权限',
-      dataIndex: 'role',
-      key: 'role',
+      title: '点赞数',
+      dataIndex: 'like',
+      key: 'like',
     },
     {
       title: '操作',
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
-          <UserModal record={record} onOk={editHandler.bind(null, record.id)}>
-            <a>Edit</a>
-          </UserModal>
+          <a onClick={() => editHandler(record.id, record)}>Edit</a>
           <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record.id)}>
             <a href="">Delete</a>
           </Popconfirm>
@@ -81,9 +64,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
     <div className={styles.normal}>
       <div>
         <div className={styles.create}>
-          <UserModal record={{}} onOk={createHandler}>
-            <Button type="primary">Create User</Button>
-          </UserModal>
+          <Button onClick={createHandler} type="primary">Create Article</Button>
         </div>
         <Table
           loading={loading}
@@ -105,13 +86,13 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 }
 
 function mapStateToProps(state) {
-  const { list, total, page } = state.users;
+  const { list, total, page } = state.articles;
   return {
     list,
     total,
     page,
-    loading: state.loading.models.users,
+    loading: state.loading.models.articles,
   };
 }
 
-export default connect(mapStateToProps)(Users);
+export default connect(mapStateToProps)(Articles);

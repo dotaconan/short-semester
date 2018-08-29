@@ -47,8 +47,8 @@ function LayoutGlobal({dispatch, children, location }) {
             <Menu.Item key="/users">
               <Link to="/users"><Icon type="bars" />用户管理</Link>
             </Menu.Item>
-            <Menu.Item key="/article">
-              <Link to="/article"><Icon type="frown-circle" />文章管理</Link>
+            <Menu.Item key="/articles">
+              <Link to="/articles"><Icon type="frown-circle" />文章管理</Link>
             </Menu.Item>
             <Menu.Item key="/bookshelf">
               <Link to="/bookshelf"><Icon type="frown-circle" />书架管理</Link>
