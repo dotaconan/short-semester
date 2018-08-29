@@ -9,11 +9,6 @@ export default {
   },
   reducers: {
     save(state, { payload: { data: list, total, page } }) {
-      list.map(x => {
-        x.sex === 0 ? x.sex = '男' : x.sex = '女';
-        x.role === 0 ? x.role = '普通用户' : x.role = '管理员';
-        return x;
-      })
       return { ...state, list, total, page };
     },
   },
@@ -33,7 +28,6 @@ export default {
     *remove({ payload: id }, { call, put, select }) {
       yield call(usersService.remove, id);
       const page = yield select(state => state.users.page);
-
       yield put({ type: 'getUserData', payload: { page } });
     },
     *patch({ payload: { id, values } }, { call, put, select }) {

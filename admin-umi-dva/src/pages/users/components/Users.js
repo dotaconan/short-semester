@@ -20,6 +20,8 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   }
 
   function editHandler(id, values) {
+    values.sex === '男' ? values.sex = 0 : values.sex = 1;
+    values.role === '普通用户' ? values.role = 0 : values.role = 1;
     dispatch({
       type: 'users/patch',
       payload: { id, values },
@@ -50,6 +52,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       title: '性别',
       dataIndex: 'sex',
       key: 'sex',
+      render: sex => sex === 0 ? '男' : '女',
     },
     {
       title: '邮箱账户',
@@ -60,6 +63,7 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       title: '权限',
       dataIndex: 'role',
       key: 'role',
+      render: role => role === 0 ? '普通用户' : '管理员',
     },
     {
       title: '操作',

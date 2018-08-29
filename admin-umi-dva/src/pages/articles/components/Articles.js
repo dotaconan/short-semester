@@ -1,5 +1,5 @@
 import { connect } from 'dva';
-import { Table, Pagination, Popconfirm, Button } from 'antd';
+import { Table, Pagination, Popconfirm, Button, Modal } from 'antd';
 import { routerRedux } from 'dva/router';
 import styles from './Articles.css';
 
@@ -29,6 +29,18 @@ function Articles({ dispatch, list: dataSource, loading, total, page: current })
     dispatch(routerRedux.push('/articlemanage'))
   }
 
+  function info(value) {
+    Modal.info({
+      title: `${value.title}`,
+      content: (
+        <div dangerouslySetInnerHTML={{
+          __html: `${value.content}`
+        }}/>
+      ),
+      onOk() {},
+    });
+  }
+
   const columns = [
     {
       title: '标题',
@@ -55,6 +67,7 @@ function Articles({ dispatch, list: dataSource, loading, total, page: current })
           <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record.id)}>
             <a href="">Delete</a>
           </Popconfirm>
+          <a onClick={() => info(record)}>view</a>
         </span>
       ),
     },

@@ -128,7 +128,7 @@ module.exports = {
             img: 'https://avatars0.githubusercontent.com/u/19502268?s=40&v=4',
             date: Random.date(),
             like: Random.integer(0, 100),
-            content: `<p>${Random.string(200)}</p>`,
+            content: `<h1>${Random.string(20)}</h1><p>${Random.string(20)}</p>`,
         }
         userData.push(newArticle)
     }

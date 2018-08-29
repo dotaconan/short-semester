@@ -33,12 +33,10 @@ export default {
     },
     *patch({ payload: { id, values } }, { call, put, select }) {
       yield call(articlesService.patch, id, values);
-      const page = yield select(state => state.articles.page);
       yield put(routerRedux.push('/articles'));
     },
     *create({ payload: values }, { call, put, select }) {
       yield call(articlesService.create, values);
-      const page = yield select(state => state.articles.page);
       yield put(routerRedux.push('/articles'));
     },
   },

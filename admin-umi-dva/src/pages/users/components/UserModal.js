@@ -1,7 +1,8 @@
 import { Component } from 'react';
-import { Modal, Form, Input } from 'antd';
+import { Modal, Form, Input, Select } from 'antd';
 
 const FormItem = Form.Item;
+const Option = Select.Option;
 
 class UserEditModal extends Component {
 
@@ -82,8 +83,13 @@ class UserEditModal extends Component {
             >
               {
                 getFieldDecorator('sex', {
-                  initialValue: sex,
-                })(<Input />)
+                  initialValue: sex === 0 ? '男' : '女',
+                })(
+                  <Select style={{ width: 120 }}>
+                    <Option value="0">男</Option>
+                    <Option value="1">女</Option>
+                  </Select>
+                )
               }
             </FormItem>
             <FormItem
@@ -92,8 +98,13 @@ class UserEditModal extends Component {
             >
               {
                 getFieldDecorator('role', {
-                  initialValue: role,
-                })(<Input />)
+                  initialValue: role === 0 ? '普通用户' : '管理员',
+                })(
+                  <Select style={{ width: 120 }}>
+                    <Option value="0">普通用户</Option>
+                    <Option value="1">管理员</Option>
+                  </Select>
+                )
               }
             </FormItem>
           </Form>
