@@ -2,6 +2,11 @@
   "navigationBarTitleText": "welcome",
   "usingComponents": {
     "i-tab-bar": "/iview/tab-bar/index",
-    "i-tab-bar-item": "/iview/tab-bar-item/index"
+    "i-tab-bar-item": "/iview/tab-bar-item/index",
+    "i-card": "/iview/card/index",
+    "i-input": "/iview/input/index",
+    "i-panel": "/iview/panel/index",
+    "i-cell-group": "/iview/cell-group/index",
+    "i-cell": "/iview/cell/index"
   }
 }

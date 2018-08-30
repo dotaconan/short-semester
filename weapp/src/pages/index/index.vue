@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="root">
     <div v-show="isShow.personal">
       <Personal />
     </div>
@@ -60,7 +60,6 @@ export default {
           }
         }
       }
-      console.log(this.isShow)
     }
   },
   methods: {
