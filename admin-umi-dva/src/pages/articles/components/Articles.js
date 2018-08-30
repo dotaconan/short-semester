@@ -46,7 +46,6 @@ function Articles({ dispatch, list: dataSource, loading, total, page: current })
       title: '标题',
       dataIndex: 'title',
       key: 'title',
-      render: text => <a href="">{text}</a>,
     },
     {
       title: '日期',
