@@ -1,6 +1,7 @@
 <template>
   <div>
     status
+    <Bluetooth />
   </div>
 </template>
 
