@@ -1,49 +1,69 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React from 'react';
+import { View, Text,ImageBackground,StyleSheet } from 'react-native';
+import { TabBar} from 'antd-mobile-rn';
+import Home from './src/views/HomePage/Home';
+import Message from './src/views/MessagePage/Message';
+import Find from './src/views/FindPage/Find';
+import Mine from './src/views/MinePage/Mine';
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+export default class App extends React.Component<any, any> {
+    constructor(props: any) {
+        super(props);
+        //设置应用默认的页面组件
+        this.state = {
+            selectedTab: 'stateTab',
+        };
+    }
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+    //设置点击tab的事件
+    onChangeTab(tabName: any) {
+        this.setState({
+            selectedTab: tabName,
+        });
+    }
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
-  }
+    render() {
+        return (
+            <TabBar style={{flex:1}}>
+                <TabBar.Item
+                    title='状态'
+                    icon={require('./src/img/home.png')}
+                    selected={this.state.selectedTab === 'stateTab'}
+                    onPress={() => this.onChangeTab('stateTab')}>
+
+                    <Home/>
+
+                </TabBar.Item>
+                <TabBar.Item
+                    icon={require('./src/img/message.png')}
+                    title='资讯'
+                    badge={22}
+                    selected={this.state.selectedTab === 'messageTab'}
+                    onPress={() => this.onChangeTab('messageTab')}>
+
+                    <Message/>
+
+                </TabBar.Item>
+                <TabBar.Item
+                    icon={require('./src/img/find.png')}
+                    title='发现'
+                    selected={this.state.selectedTab === 'findTab'}
+                    onPress={() => this.onChangeTab('findTab')}>
+
+
+                    <Find/>
+
+                </TabBar.Item>
+                <TabBar.Item
+                    icon={require('./src/img/me.png')}
+                    title='我的'
+                    selected={this.state.selectedTab === 'mineTab'}
+                    onPress={() => this.onChangeTab('mineTab')}>
+
+                    <Mine/>
+
+                </TabBar.Item>
+            </TabBar>
+        );
+    }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
