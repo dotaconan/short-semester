@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt')
+const SALT_WORK_FACTOR = 10
 
 function checkPwd (password, userRes) {
     return new Promise((resolve, reject) => {

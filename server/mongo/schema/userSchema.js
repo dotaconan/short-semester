@@ -3,11 +3,12 @@ const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 
 const UserDataSchema = new Schema({
+    avatar: String,
     name: String,
     password: String,
     account: String,
-    sex: String,
-    role: String
+    sex: Number,
+    role: Number
 })
 
 UserDataSchema.methods = {
