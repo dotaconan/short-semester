@@ -1,7 +1,7 @@
-import * as usersService from '../services/users';
+import * as bookService from '../services/bookshelf';
 
 export default {
-  namespace: 'users',
+  namespace: 'bookshelf',
   state: {
     list: [],
     total: null,
@@ -14,8 +14,8 @@ export default {
   },
   effects: {
     // 获取用户数据
-    *getUserData({ payload: { page = 1 } }, { call, put }){
-      const { data } = yield call(usersService.getUser, { page });
+    *getBookData({ payload: { page = 1 } }, { call, put }){
+      const { data } = yield call(bookService.get, { page });
       yield put({
         type: 'save',
         payload: {
@@ -26,19 +26,19 @@ export default {
       });
     },
     *remove({ payload: id }, { call, put, select }) {
-      yield call(usersService.remove, id);
-      const page = yield select(state => state.users.page);
-      yield put({ type: 'getUserData', payload: { page } });
+      yield call(bookService.remove, id);
+      const page = yield select(state => state.bookshelf.page);
+      yield put({ type: 'getBookData', payload: { page } });
     },
     *patch({ payload: { id, values } }, { call, put, select }) {
-      yield call(usersService.patch, id, values);
-      const page = yield select(state => state.users.page);
-      yield put({ type: 'getUserData', payload: { page } });
+      yield call(bookService.patch, id, values);
+      const page = yield select(state => state.bookshelf.page);
+      yield put({ type: 'getBookData', payload: { page } });
     },
     *create({ payload: values }, { call, put, select }) {
-      yield call(usersService.create, values);
-      const page = yield select(state => state.users.page);
-      yield put({ type: 'getUserData', payload: { page } });
+      yield call(bookService.create, values);
+      const page = yield select(state => state.bookshelf.page);
+      yield put({ type: 'getBookData', payload: { page } });
     },
   },
   // 监听路由
@@ -46,8 +46,8 @@ export default {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
         console.log(pathname, query)
-        if (pathname === '/users') {
-          dispatch({ type: 'getUserData', payload: query });
+        if (pathname === '/bookshelf') {
+          dispatch({ type: 'getBookData', payload: query });
         }
       });
     },

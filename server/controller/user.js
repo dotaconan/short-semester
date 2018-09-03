@@ -2,13 +2,62 @@ const UserDataModel = require('../mongo/model/userModel')
 
 const { checkPwd, hashPwd } = require('./../libs/pwd')
 
+function regist(req, res) {
+    const { registAccount, registPsd } = req.body
+
+    UserDataModel.findOne({account: registAccount}, (err, userInfo) => {
+        if (err) console.log(err)
+        if (userinfo) {
+            res.send({
+                status: false,
+                msg: '用户已存在, 请重新注册'
+            })
+        }
+        // 创建 model
+        const _userData = new UserDataModel({
+            name: 'guest',
+            accountnum: registAccount,
+            password: registPsd,
+            sex: 0,
+            role: 0
+        });
+
+        let hash = hashPwd(registPsd);
+
+        hash.then((hashPassword) => {
+            _userData.password = hashPassword
+            // 保存密码
+            _userData.save((err, results) => {
+                if (err) {
+                    console.log(err)
+                        // 返回
+                    res.send({
+                        status: false,
+                        msg: '数据库保存失败'
+                    })
+                }
+                // 返回录入信息
+                res.send({
+                    status: true,
+                    name: 'guest',
+                    accountnum: registAccount,
+                    role: 0,
+                    sex: 0,
+                    msg: '注册成功'
+                })
+            })
+        })
+
+    })
+}
+
 // 登录查询
 function login(req, res) {
     // 从请求中拿到数据
-    const { loginNum, loginPsd } = req.body
+    const { loginAccount, loginPsd } = req.body
 
     // 通过 loginNum 查询 user 表, 返回 userInfo
-    UserDataModel.findOne({ accountnum: loginNum }, (err, userInfo) => {
+    UserDataModel.findOne({ account: loginAccount }, (err, userInfo) => {
         if (err) {
             console.log(err)
         }
@@ -200,12 +249,8 @@ function userUpdatePwd(req, res) {
 
 
 module.exports = {
+    regist,
     login,
     logout,
-    // oAuthAdmin,
-    // oAuthTeacher,
-    adminInput,
-    findNameById,
-    findInfoByNum,
-    userUpdatePwd
+    adminInput
 }

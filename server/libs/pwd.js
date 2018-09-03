@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
 
-export function checkPwd (password, userRes) {
+function checkPwd (password, userRes) {
     return new Promise((resolve, reject) => {
         // 密码匹配
         userRes.comparePassword(password, (err, isMatch) => {
@@ -13,7 +13,7 @@ export function checkPwd (password, userRes) {
     })
 }
 
-export function hashPwd (password) {
+function hashPwd (password) {
     return new Promise((resolve, reject) => {
         // 生成 salt
         bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
@@ -30,4 +30,9 @@ export function hashPwd (password) {
             })
         })
     })
+}
+
+module.exports = {
+    checkPwd,
+    hashPwd
 }

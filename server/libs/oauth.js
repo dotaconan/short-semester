@@ -1,7 +1,7 @@
 const ADMIN_ROLE = 1
 const BASE_ROLE = 0
 
-export function oAuthAdmin (req, res, next) {
+function oAuthAdmin (req, res, next) {
     if (req.session.isLogin) {
         const t_role = req.session.userInfo.userRole
         if (t_role === ADMIN_ROLE) {
@@ -20,7 +20,7 @@ export function oAuthAdmin (req, res, next) {
     }
 }
 
-export function oAuthBase (req, res, next) {
+function oAuthBase (req, res, next) {
     if (req.session.isLogin) {
         const t_role = req.session.userInfo.userRole
 
@@ -38,4 +38,9 @@ export function oAuthBase (req, res, next) {
             msg: '请登录！'
         })
     }
+}
+
+module.exports = {
+    oAuthAdmin,
+    oAuthBase
 }

@@ -5,6 +5,8 @@ const userAction = require('./../controller/user')
 
 const {oAuthAdmin, oAuthBase} = require('./../libs/oauth')
 
+// 用户注册
+router.post('/regist', userAction.regist);
 
 // 用户登录
 router.post('/login', userAction.login);

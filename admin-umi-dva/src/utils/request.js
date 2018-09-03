@@ -37,9 +37,8 @@ export default async function request(url, options) {
   const response = await fetch(url, {...defaultOptions, ...options});
 
   checkStatus(response);
-
   const data = await response.json();
-
+  console.log(data)
   const ret = {
     data,
     headers: {},
