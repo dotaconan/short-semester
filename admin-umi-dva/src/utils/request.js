@@ -4,7 +4,6 @@ function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
         return response;
     }
-
     const error = new Error(response.statusText);
     error.response = response;
     throw error;
@@ -27,22 +26,21 @@ function checkStatus(response) {
 };
  */
 const defaultOptions = {
-    mode: 'cors',
-    credentials: 'include',
+    // mode: 'no-cors',
+    // credentials: 'include',
     headers: {
         'Content-Type': 'application/json'
     },
 };
 export default async function request(url, options) {
-  const response = await fetch(url, {...defaultOptions, ...options});
+    const response = await fetch(url, {...defaultOptions, ...options})
+    // const response = await fetch(url, options);
+    
+    checkStatus(response);
 
-  checkStatus(response);
-  const data = await response.json();
-  console.log(data)
-  const ret = {
-    data,
-    headers: {},
-  };
-
-  return ret;
+    const data = await response.json();
+    const result = {
+        data
+    }
+    return result
 }

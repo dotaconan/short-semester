@@ -37,7 +37,7 @@ export default {
               case '/bookshelf':
                 document.title="书架管理";
               break;
-              case '/users':
+              case '/userinfo':
                 document.title="用户管理";
               break;
               default:break;

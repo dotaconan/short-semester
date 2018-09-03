@@ -14,9 +14,10 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
 
   function pageChangeHandler(page) {
     dispatch(routerRedux.push({
-      pathname: '/users',
+      pathname: '/userinfo',
       query: { page },
     }));
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
   }
 
   function editHandler(id, values) {
@@ -29,6 +30,8 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
   }
 
   function createHandler(values) {
+    values.sex === '男' ? values.sex = 0 : values.sex = 1;
+    values.role === '普通用户' ? values.role = 0 : values.role = 1;
     dispatch({
       type: 'users/create',
       payload: values,
@@ -44,8 +47,8 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
     },
     {
       title: '名字',
-      dataIndex: 'nickname',
-      key: 'nickname',
+      dataIndex: 'name',
+      key: 'name',
       render: text => <a href="">{text}</a>,
     },
     {
@@ -70,10 +73,10 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
-          <UserModal record={record} onOk={editHandler.bind(null, record.id)}>
+          <UserModal record={record} onOk={editHandler.bind(null, record._id)}>
             <a>Edit</a>
           </UserModal>
-          <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record.id)}>
+          <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record._id)}>
             <a href="">Delete</a>
           </Popconfirm>
         </span>
@@ -93,14 +96,14 @@ function Users({ dispatch, list: dataSource, loading, total, page: current }) {
           loading={loading}
           columns={columns}
           dataSource={dataSource}
-          rowKey={record => record.id}
+          rowKey={record => record._id}
           pagination={false}
         />
         <Pagination
           className="ant-table-pagination"
           total={total}
           current={current}
-          pageSize={10}
+          pageSize={8}
           onChange={pageChangeHandler}
         />
       </div>

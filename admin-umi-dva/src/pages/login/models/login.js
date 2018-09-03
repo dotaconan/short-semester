@@ -25,7 +25,7 @@ export default {
       let { userData, resolve, reject } = payload;
       const { data } = yield call(doLogin, userData);
 
-      if (data && data.success) {
+      if (data && data.status) {
         let userInfo = data.userInfo;
         yield sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
         //登录成功
@@ -43,13 +43,12 @@ export default {
     },
     * doLogout({ payload }, { call, put }) {
       const { data } = yield call(doLogout);
-
-      if (data && data.success) {
+      console.log(data)
+      if (data && data.status) {
         yield sessionStorage.removeItem('userInfo')
         //退出登录成功
         yield put({
-          type: 'logoutSuccess',
-          payload: data.userInfo
+          type: 'logoutSuccess'
         });
         yield put(routerRedux.push('/login'));
       }

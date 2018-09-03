@@ -22,7 +22,7 @@ function login({dispatch, form}) {
         }).then(null, (data)=>{
           Modal.error({
             title: '错误提示',
-            content: <p style={{fontSize: 14}}>用户名 或 密码 错误！</p>
+            content: <p style={{fontSize: 14}}>{data.msg}</p>
           });
         });
       }

@@ -1,4 +1,5 @@
 import * as usersService from '../services/users';
+import { Modal } from 'antd'
 
 export default {
   namespace: 'users',
@@ -19,8 +20,8 @@ export default {
       yield put({
         type: 'save',
         payload: {
-          data: data.data,
-          total: 50,
+          data: data.user,
+          total: data.count,
           page: parseInt(page, 10),
         },
       });
@@ -36,7 +37,14 @@ export default {
       yield put({ type: 'getUserData', payload: { page } });
     },
     *create({ payload: values }, { call, put, select }) {
-      yield call(usersService.create, values);
+      const { data } = yield call(usersService.create, values);
+      console.log(data);
+      if (!data.status) {
+        Modal.error({
+          title: '错误提示',
+          content: <p style={{fontSize: 14}}>{data.msg}</p>
+        });
+      }
       const page = yield select(state => state.users.page);
       yield put({ type: 'getUserData', payload: { page } });
     },
@@ -45,8 +53,7 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
-        console.log(pathname, query)
-        if (pathname === '/users') {
+        if (pathname === '/userinfo') {
           dispatch({ type: 'getUserData', payload: query });
         }
       });

@@ -44,8 +44,8 @@ function LayoutGlobal({dispatch, children, location }) {
           <Menu.Item key="/">
               <Link to="/"><Icon type="home" />主页</Link>
             </Menu.Item>
-            <Menu.Item key="/users">
-              <Link to="/users"><Icon type="bars" />用户管理</Link>
+            <Menu.Item key="/userinfo">
+              <Link to="/userinfo"><Icon type="bars" />用户管理</Link>
             </Menu.Item>
             <Menu.Item key="/articles">
               <Link to="/articles"><Icon type="form" />文章管理</Link>

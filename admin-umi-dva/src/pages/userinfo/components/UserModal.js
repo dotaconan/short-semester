@@ -39,7 +39,7 @@ class UserEditModal extends Component {
   render() {
     const { children } = this.props;
     const { getFieldDecorator } = this.props.form;
-    const { nickname, sex, account, role } = this.props.record;
+    const { name,account, sex, role } = this.props.record;
     const formItemLayout = {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
@@ -51,7 +51,7 @@ class UserEditModal extends Component {
           { children }
         </span>
         <Modal
-          title={this.props.record.id ? '编辑' : '新建'}
+          title={this.props.record._id ? '编辑' : '新建'}
           visible={this.state.visible}
           onOk={this.okHandler}
           onCancel={this.hideModelHandler}
@@ -62,21 +62,30 @@ class UserEditModal extends Component {
               label="昵称"
             >
               {
-                getFieldDecorator('nickname', {
-                  initialValue: nickname,
+                getFieldDecorator('name', {
+                  initialValue: name,
                 })(<Input />)
               }
             </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label="账户"
-            >
-              {
-                getFieldDecorator('account', {
-                  initialValue: account,
-                })(<Input />)
-              }
-            </FormItem>
+            {
+              this.props.record._id ?
+                (
+                  <div></div>
+                )
+                :
+                (
+                  <FormItem
+                    {...formItemLayout}
+                    label="账户"
+                  >
+                    {
+                      getFieldDecorator('account', {
+                        initialValue: account,
+                      })(<Input />)
+                    }
+                  </FormItem>
+                )
+            }
             <FormItem
               {...formItemLayout}
               label="性别"

@@ -45,7 +45,6 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
-        console.log(pathname, query)
         if (pathname === '/bookshelf') {
           dispatch({ type: 'getBookData', payload: query });
         }
