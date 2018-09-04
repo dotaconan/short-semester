@@ -9,6 +9,7 @@ const debug = require('debug')('server1:server');
 const uuid = require('uuid/v4')
 
 const user_api = require('./router/users')
+const article_api = require('./router/article')
 
 const app = express()
 
@@ -56,7 +57,8 @@ app.use(session({
 // app.use('/picture', express.static('./picture'));
 // app.use(express.static('./dist/'));
 
-app.use('/user', user_api)
+app.use('/user_api', user_api)
+app.use('/article_api', article_api)
 
 const port = normalizePort(process.env.PORT || '3456');
 app.set('port', port);
