@@ -1,8 +1,7 @@
 import { Component } from 'react';
-import { Modal, Form, Input, Select, DatePicker } from 'antd';
+import { Modal, Form, Input, DatePicker } from 'antd';
 
 const FormItem = Form.Item;
-const Option = Select.Option;
 
 class BookshelfEditModal extends Component {
 
@@ -44,7 +43,7 @@ class BookshelfEditModal extends Component {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 },
         };
-        const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
+        // const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
         function onChange(date, dateString) {
             console.log(date, dateString);

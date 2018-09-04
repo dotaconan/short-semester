@@ -1,7 +1,7 @@
 import { connect } from 'dva';
 import { Table, Pagination, Popconfirm, Button } from 'antd';
 import { routerRedux } from 'dva/router';
-import styles from './Bookshelf.css';
+import styles from './BookShelf.css';
 import BookshelfModel from './BookshelfModel';
 
 function Bookshelf({ dispatch, list: dataSource, loading, total, page: current }) {

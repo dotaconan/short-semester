@@ -6,7 +6,7 @@ import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/braft.css'
 
 let articleData = {}
-
+let articleId
 function Manage({ values }) {
   if (!values) {
     values = {
@@ -15,6 +15,7 @@ function Manage({ values }) {
     }
   }
   articleData = values;
+  articleId = values._id
 
   const editorChange = (content) => {
     articleData.content = content
@@ -40,10 +41,12 @@ function Manage({ values }) {
 }
 
 const handleSubmit = () => {
-  articleData.id ?
+  articleId ?
     window.g_app._store.dispatch({
       type: "articles/patch",
-      payload: articleData
+      payload: {
+        articleData
+      }
     }) :
     window.g_app._store.dispatch({
       type: "articles/create",

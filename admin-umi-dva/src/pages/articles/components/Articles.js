@@ -18,10 +18,10 @@ function Articles({ dispatch, list: dataSource, loading, total, page: current })
     }));
   }
 
-  function editHandler(id, values) {
+  function editHandler(articleID, values) {
     dispatch(routerRedux.push({
       pathname: '/articlemanage',
-      body: { values },
+      body: { articleID, values },
     }))
   }
 
@@ -62,8 +62,8 @@ function Articles({ dispatch, list: dataSource, loading, total, page: current })
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
-          <a onClick={() => editHandler(record.id, record)}>Edit</a>
-          <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record.id)}>
+          <a onClick={() => editHandler(record._id, record)}>Edit</a>
+          <Popconfirm title="Confirm to delete?" onConfirm={deleteHandler.bind(null, record._id)}>
             <a href="">Delete</a>
           </Popconfirm>
           <a onClick={() => info(record)}>view</a>
@@ -82,7 +82,7 @@ function Articles({ dispatch, list: dataSource, loading, total, page: current })
           loading={loading}
           columns={columns}
           dataSource={dataSource}
-          rowKey={record => record.id}
+          rowKey={record => record._id}
           pagination={false}
         />
         <Pagination

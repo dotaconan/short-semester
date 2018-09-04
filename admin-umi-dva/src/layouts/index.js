@@ -33,7 +33,7 @@ function LayoutGlobal({dispatch, children, location }) {
 
   return (
     <Layout className={styles.layout}>
-      <Header style={{ minWidth: 1580 }}>
+      <Header style={{ minWidth: 1440 }}>
         <div className={styles.logo} />
         <Menu
         selectedKeys={[location.pathname]}

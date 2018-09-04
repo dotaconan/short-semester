@@ -1,4 +1,4 @@
-import Bookshelf from './components/Bookshelf';
+import Bookshelf from './components/BookShelf';
 
 export default () => {
   return (

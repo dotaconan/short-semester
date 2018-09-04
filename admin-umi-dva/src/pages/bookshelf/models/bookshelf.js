@@ -1,4 +1,4 @@
-import * as bookshelfService from '../services/Bookshelf';
+import * as bookshelfService from '../services/bookshelf';
 
 export default {
   namespace: 'bookshelf',
