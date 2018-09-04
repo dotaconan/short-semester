@@ -1,4 +1,4 @@
-import * as bookService from '../services/bookshelf';
+import * as bookshelfService from '../services/Bookshelf';
 
 export default {
   namespace: 'bookshelf',
@@ -14,8 +14,8 @@ export default {
   },
   effects: {
     // 获取用户数据
-    *getBookData({ payload: { page = 1 } }, { call, put }){
-      const { data } = yield call(bookService.get, { page });
+    *getBookshelfData({ payload: { page = 1 } }, { call, put }){
+      const { data } = yield call(bookshelfService.getBookshelf, { page });
       yield put({
         type: 'save',
         payload: {
@@ -26,27 +26,26 @@ export default {
       });
     },
     *remove({ payload: id }, { call, put, select }) {
-      yield call(bookService.remove, id);
+      yield call(bookshelfService.remove, id);
       const page = yield select(state => state.bookshelf.page);
-      yield put({ type: 'getBookData', payload: { page } });
+      yield put({ type: 'getBookshelfData', payload: { page } });
     },
     *patch({ payload: { id, values } }, { call, put, select }) {
-      yield call(bookService.patch, id, values);
+      yield call(bookshelfService.patch, id, values);
       const page = yield select(state => state.bookshelf.page);
-      yield put({ type: 'getBookData', payload: { page } });
+      yield put({ type: 'getBookshelfData', payload: { page } });
     },
     *create({ payload: values }, { call, put, select }) {
-      yield call(bookService.create, values);
+      yield call(bookshelfService.create, values);
       const page = yield select(state => state.bookshelf.page);
-      yield put({ type: 'getBookData', payload: { page } });
+      yield put({ type: 'getBookshelfData', payload: { page } });
     },
   },
-  // 监听路由
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
         if (pathname === '/bookshelf') {
-          dispatch({ type: 'getBookData', payload: query });
+          dispatch({ type: 'getBookshelfData', payload: query });
         }
       });
     },

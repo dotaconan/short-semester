@@ -1,9 +1,9 @@
-import BookShelf from './components/BookShelf';
+import Bookshelf from './components/Bookshelf';
 
 export default () => {
   return (
     <div>
-      <BookShelf />
+      <Bookshelf />
     </div>
   )
 }
