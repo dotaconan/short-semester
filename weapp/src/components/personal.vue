@@ -9,9 +9,11 @@
         <open-data type="userNickName"></open-data>
       </div>
     </div>
+
     <div style="text-align: center; font-size: 13px; margin: 15px;">
       <a href="/pages/bluetooth/index">点击获取并上传数据</a>
     </div>
+
     <!-- 日均步数 -->
     <div class="record">
       <div class="record_day_step">
@@ -50,6 +52,7 @@
       <i-input type="number" :value="inputWeight" placeholder="请输入目标体重 (kg)" @change="changeWeight"/>
       <div style="margin: 0 0 5px 0;width: 80%;margin-left:auto;margin-right:auto; border-top: 1px solid #bbb"></div>
     </i-modal>
+    
     <!-- sport model -->
     <i-modal :visible="sportModel" @ok="sportOk" @cancel="handleClick">
       <i-input type="number" :value="inputWeight" placeholder="请输入目标步数 (步)" @change="changeSport"/>

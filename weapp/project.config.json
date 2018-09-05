@@ -9,7 +9,7 @@
 	},
 	"miniprogramRoot": "./dist/",
 	"compileType": "miniprogram",
-	"appid": "touristappid",
+	"appid": "wxccc28c9b7333fa7a",
 	"projectname": "semester",
 	"condition": {
 		"search": {

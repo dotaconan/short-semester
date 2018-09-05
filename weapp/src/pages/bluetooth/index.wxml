@@ -4,11 +4,11 @@
 <view class="devices_data" wx:if="{{devices_data}}">
     <view class="devices devices_name"><text>设备名称</text>{{devices_data.name}}</view>
     <view class="devices devices_id"><text>设备ID</text>{{devices_data.deviceId}}</view>
-    <view class="devices devices_id"><text>设备剩余电量</text>{{electricity_data_surplus}}</view>
+    <view class="devices devices_id"><text>设备剩余电量</text>{{electricityData_surplus}}</view>
 </view>
 <view class="control_box" wx:if="{{devices_data}}">
     <view class="control_link">
-        <view class="steps_data_count">{{steps_data_count}}<text>步</text></view>
+        <view class="steps_data_count">{{stepsData_count}}<text>步</text></view>
     </view>
     <view class="control_link">
         <button bindtap="steps_control">读取步数</button>

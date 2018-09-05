@@ -51,7 +51,7 @@ function LayoutGlobal({dispatch, children, location }) {
               <Link to="/articles"><Icon type="form" />文章管理</Link>
             </Menu.Item>
             <Menu.Item key="/bookshelf">
-              <Link to="/bookshelf"><Icon type="database" />书架管理</Link>
+              <Link to="/bookshelf"><Icon type="database" />分类管理</Link>
             </Menu.Item>
             <Menu.Item key="logout" className={styles.logout}>
               <Button type="primary" onClick={userLogout}><Icon type="poweroff" />退出</Button>

@@ -5,6 +5,8 @@ const { checkPwd, hashPwd } = require('./../libs/pwd')
 // 用户注册
 function regist(req, res) {
     const { registAccount, registPsd } = req.body
+    
+    console.log('regist: ', registAccount, registPsd)
 
     UserDataModel.findOne({account: registAccount}, (err, userInfo) => {
         if (err) {
@@ -64,7 +66,7 @@ function login(req, res) {
     // 从请求中拿到数据
     const { username, password } = req.body
     
-    console.log(username, password)
+    console.log('login: ', username, password)
 
     // 通过 loginNum 查询 user 表, 返回 userInfo
     UserDataModel.findOne({ account: username }, (err, userInfo) => {
@@ -83,11 +85,10 @@ function login(req, res) {
             .then((checkStatus) => {
                 if (!checkStatus) {
                     // 错误返回
-                    res.send({
+                    return res.send({
                         status: false,
                         msg: '密码错误'
                     })
-                    return checkStatus;
                 }
                 // session 中的 isLogin 置为 true
                 req.session.isLogin = true
