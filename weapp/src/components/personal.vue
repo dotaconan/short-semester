@@ -17,16 +17,16 @@
     <!-- 日均步数 -->
     <div class="record">
       <div class="record_day_step">
-        <p>日均步数</p>
-        <p>0</p>
+        <p>今日步数</p>
+        <p>453</p>
       </div>
       <div class="record_day_step">
         <p>日均步数</p>
-        <p>0</p>
+        <p>3020</p>
       </div>
       <div class="record_day_step">
-        <p>日均步数</p>
-        <p>0</p>
+        <p>月均步数</p>
+        <p>2100</p>
       </div>
     </div>
     <!-- 分割线 -->
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+// import { baseURL } from './../utils/baseURL.js'
 
 export default {
   data () {
