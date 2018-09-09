@@ -21,7 +21,7 @@ export default {
         type: 'save',
         payload: {
           data: data.article,
-          total: data.length,
+          total: data.count,
           page: parseInt(page, 10),
         },
       });

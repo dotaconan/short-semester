@@ -1,5 +1,5 @@
 // import Manage from './components/manage';
-import { Breadcrumb, Button, Input } from 'antd';
+import { Breadcrumb, Button, Input, message } from 'antd';
 import Link from 'umi/link';
 
 import BraftEditor from 'braft-editor'
@@ -41,17 +41,23 @@ function Manage({ values }) {
 }
 
 const handleSubmit = () => {
-  articleId ?
-    window.g_app._store.dispatch({
-      type: "articles/patch",
-      payload: {
-        articleData
-      }
-    }) :
-    window.g_app._store.dispatch({
-      type: "articles/create",
-      payload: articleData
-    })
+  console.log(articleData)
+  if (articleData.title === '' || articleData.content === '') {
+    message.warning('内容不能为空');
+  }else {
+    articleId ?
+      window.g_app._store.dispatch({
+        type: "articles/patch",
+        payload: {
+          articleData
+        }
+      }) :
+      window.g_app._store.dispatch({
+        type: "articles/create",
+        payload: articleData
+      })
+  }
+  
 }
 
 export default (location) => {

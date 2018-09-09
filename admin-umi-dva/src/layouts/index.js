@@ -50,8 +50,8 @@ function LayoutGlobal({dispatch, children, location }) {
             <Menu.Item key="/articles">
               <Link to="/articles"><Icon type="form" />文章管理</Link>
             </Menu.Item>
-            <Menu.Item key="/bookshelf">
-              <Link to="/bookshelf"><Icon type="database" />分类管理</Link>
+            <Menu.Item key="/sitemessage">
+              <Link to="/sitemessage"><Icon type="notification" />站内信</Link>
             </Menu.Item>
             <Menu.Item key="logout" className={styles.logout}>
               <Button type="primary" onClick={userLogout}><Icon type="poweroff" />退出</Button>

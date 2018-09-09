@@ -89,7 +89,7 @@ function Articles({ dispatch, list: dataSource, loading, total, page: current })
           className="ant-table-pagination"
           total={total}
           current={current}
-          pageSize={10}
+          pageSize={8}
           onChange={pageChangeHandler}
         />
       </div>
