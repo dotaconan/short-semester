@@ -1,10 +1,14 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const ObjectId = Schema.Types.ObjectId;
 
-const CategoryDataSchema = new Schema({
-	title: String,
-	like: Number,
-	content: String,
+const HealthDataSchema = new Schema({
+	target: String,
+	exercise: String,
+	birthday: String,
+	weight: String,
+	height: String,
+	steps: String,
 	createAt: {
 		type: Date,
 		default: Date.now()
@@ -15,7 +19,7 @@ const CategoryDataSchema = new Schema({
 	},
 })
 
-CategoryDataSchema.pre('save', function(next) {
+HealthDataSchema.pre('save', function(next) {
     // 判断是否为新建，更改时间
     if (this.isNew) {
         this.createAt = this.date = Date.now();
@@ -26,4 +30,4 @@ CategoryDataSchema.pre('save', function(next) {
     next();
 });
 
-module.exports = CategoryDataSchema
+module.exports = HealthDataSchema

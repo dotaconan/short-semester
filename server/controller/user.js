@@ -162,7 +162,7 @@ function getAllUser (req, res) {
 // 录入用户
 function adminInput(req, res) {
     // 从请求中拿到数据
-    const { nickname, account, role, sex } = req.body
+    const { name, account, role, sex } = req.body
 
     // 从 user 表查询
     UserDataModel.findOne({ account: account }, (err, userInfo) => {
@@ -180,7 +180,7 @@ function adminInput(req, res) {
         } else {
             // 创建 model
             let _userData = new UserDataModel({
-                name: nickname,
+                name: name,
                 account: account,
                 password: '000000',
                 sex: sex,

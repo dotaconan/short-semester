@@ -15,4 +15,10 @@ router.patch('/:id', articleAction.editArticle)
 // 根据 id 删除文章
 router.delete('/:id', articleAction.deleteArticle)
 
+// 根据名字搜索
+router.post('/search', articleAction.findArticleByName)
+
+// 文章点赞
+router.post('/like', articleAction.likeArticle)
+
 module.exports = router

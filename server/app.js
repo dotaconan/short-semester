@@ -10,6 +10,7 @@ const uuid = require('uuid/v4')
 
 const user_api = require('./router/users')
 const article_api = require('./router/article')
+const comment_api = require('./router/comment')
 
 const app = express()
 
@@ -59,6 +60,7 @@ app.use(session({
 
 app.use('/user_api', user_api)
 app.use('/article_api', article_api)
+app.use('/comment_api', comment_api)
 
 const port = normalizePort(process.env.PORT || '3456');
 app.set('port', port);

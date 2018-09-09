@@ -107,9 +107,54 @@ function deleteArticle (req, res) {
     })
 }
 
+// 查找文章
+function findArticleByName (req, res) {
+    const { title } = req.body
+    ArticleDataModel.findOne({ title: new RegExp('.*' + title + '.*') }, (err, result) => {
+        if (err) {
+            console.log(err)
+            res.send({
+                satus: false,
+                msg: '查找失败'
+            })
+        }
+        console.log(result)
+        res.send({
+            status: true,
+            article: result,
+        })
+    })
+}
+
+// 文章点赞
+function likeArticle (req, res) {
+    const { id, like } = req.body
+    ArticleDataModel.update(
+        { _id: id }, 
+        { $set: {
+            'like': like
+           } 
+        }, err => {
+            if(err) {
+                console.log(err)
+                res.send({
+                    status: false,
+                    msg: '更新数据失败'
+                })
+                return false
+            }
+            res.send({
+                status: true,
+                msg: '更新数据成功'
+            })
+        })
+}
+
 module.exports = {
 	getAllArticle,
 	addArticle,
 	editArticle,
-	deleteArticle
+    deleteArticle,
+    findArticleByName,
+    likeArticle
 }
